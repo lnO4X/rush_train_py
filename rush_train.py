@@ -5,16 +5,23 @@ import traceback
 #winsound模块 发出声音 only wma,mp3
 import winsound
 
+#ConfigParser模块 读取配置文件
+import configparser
+import string, os, sys
+
 
 #引用winform来弹窗
-#import win32api,win32con
 import ctypes 
 
-# 设定用户名，密码
-uname = u"ur name"
-upasswd=u"ur password"
+# 读取配置文件
+cf = configparser.ConfigParser() 
+cf.read("app.conf")
 
-print (uname+"/"+upasswd);
+# 设定用户名，密码
+uname = cf.get("user", "name")
+upasswd=cf.get("user", "password")
+
+print ("username:"+uname);
 
 
 # 起始地址的cookies值要自己去找
@@ -103,7 +110,8 @@ def huoche():
         #b.find_by_id(u"inp-train").fill(train_no);
         #b.find_by_id(u"add-train").click();
         #b.find_by_id(u"show_more").click();
-     
+
+        # 选择类型
         b.find_by_text(train_type).click()
         
         # 循环点击预订
@@ -116,7 +124,7 @@ def huoche():
                 try:
                     b.find_by_text(u"预订")[order - 1].click()
                 except:
-                    print (u"还没开始预订")
+                    print (u"不能预订")
                     continue
         else:
             while b.url == ticket_url:
@@ -128,23 +136,13 @@ def huoche():
                     for i in b.find_by_text(u"预订"):
                         i.click()
                 except:
-                    print (u"还没开始预订")
+                    print (u"不能预订")
                     continue
         sleep(1)
         b.find_by_text(pa)[1].click()
-
-        # Play Windows exit sound.
-        #winsound.PlaySound("SystemExit", winsound.SND_ALIAS)
-        # Probably play Windows default sound, if any is registered (because
-        # "*" probably isn't the registered name of any sound).
-        winsound.Beep(300, 2000);
-        #winsound.PlaySound("*", winsound.SND_ALIAS)
-        #winsound.Beep(600,2000);
-
-        # win32api.MessageBox(0,u'看票', u'票来了' ,win32con.MB_OK)
+        winsound.Beep(300, 3000);
         ctypes.windll.user32.MessageBoxW(0,u'看票', u'票来了',0)
-        
-        print  (u"能做的都做了.....不再对浏览器进行任何操作")
+        print  (u"快输入验证码抢票啊啊  啊")
     except Exception as e:
         print(traceback.print_exc())
 if __name__ == "__main__":
