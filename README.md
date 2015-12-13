@@ -13,6 +13,8 @@ rush the chinese train tickets
 
 4 put chromedriver under the path(system enviroment)
 
-5 edit py file with your account
+5 edit py file with your account/station/datetime/train_type/order
+
+station  code need to go to 12306 website with chrome.search with the parameters you wanted  ,press f12 and click resource->cookie->find the station code.
 
 contact me:eashe@qq.com
