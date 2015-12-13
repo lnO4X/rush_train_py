@@ -11,4 +11,6 @@ rush the chinese train tickets
 
 3 chromedriver link http://chromedriver.storage.googleapis.com/index.html?path=2.20/
 
+4 put chromedriver under the path(system enviroment)
+
 contact me:eashe@qq.com
