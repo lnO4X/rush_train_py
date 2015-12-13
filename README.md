@@ -13,4 +13,6 @@ rush the chinese train tickets
 
 4 put chromedriver under the path(system enviroment)
 
+5 edit py file with your account
+
 contact me:eashe@qq.com
