@@ -4,11 +4,9 @@ from time import sleep
 import traceback
 #winsound模块 发出声音 only wma,mp3
 import winsound
-
 #ConfigParser模块 读取配置文件
 import configparser
 import string, os, sys
-
 
 #引用winform来弹窗
 import ctypes 
@@ -17,36 +15,39 @@ import ctypes
 cf = configparser.ConfigParser() 
 cf.read("app.conf")
 
-# 设定用户名，密码
+# 读取用户名，密码
 uname = cf.get("user", "name")
 upasswd=cf.get("user", "password")
-
 print ("username:"+uname);
+# 读取乘客
+pa = cf.get("ticket", "passenger_name")
+print ("passenger:"+pa);
+
+# 读取购车序号，选择第几趟，0则从上之下依次点击
+order = cf.get("ticket", "order_no")
 
 
-# 起始地址的cookies值要自己去找
-start_sta = u"%u6DF1%u5733%2CSZQ"
-end_sta =u"%u5357%u660C%2CNCG"
+#设定乘坐类型
+train_type = cf.get("ticket", "train_type")
+
+
+# 读取起始地址的cookies值要自己去找
+start_sta = cf.get("ticket", "start_station")
+end_sta =cf.get("ticket", "end_station")
+
 
 print (start_sta+"/"+end_sta);
 
 
 # 时间格式2016-02-01
 
-dtime = u"2016-01-29"
-
-# 车次，选择第几趟，0则从上之下依次点击
-
-order = 2
-
-#设定乘客姓名
-
-pa = u"何抱东"
+dtime = cf.get("ticket", "start_date") 
 
 
-#设定乘坐类型
 
-train_type = u"Z-直达"
+
+
+
 
 
 #设定乘坐车次
@@ -56,11 +57,11 @@ train_no = u"Z186"
 
 #设定网址
 
-ticket_url = "https://kyfw.12306.cn/otn/leftTicket/init"
+ticket_url = cf.get("site", "ticket_url") 
 
-login_url = "https://kyfw.12306.cn/otn/login/init"
+login_url = cf.get("site", "login_url") 
 
-initmy_url = "https://kyfw.12306.cn/otn/index/initMy12306"
+initmy_url = cf.get("site", "initmy_url") 
 
 
 #登录网站
