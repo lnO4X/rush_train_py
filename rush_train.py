@@ -38,7 +38,7 @@ end_sta =cf.get("ticket", "end_station")
 print (start_sta+"/"+end_sta);
 
 # 读取系统配置
-interval = cf.get("system", "interval")
+interval = cf.getint("system", "interval")
 
 
 # 时间格式2016-02-01
