@@ -2,14 +2,11 @@ from splinter.browser import Browser
 from time import sleep
 #traceback模块 跟踪异常返回信息
 import traceback
-#winsound模块 发出声音 only wma,mp3
-import winsound
 #ConfigParser模块 读取配置文件
 import configparser
 import string, os, sys
+import notify
 
-#引用winform来弹窗
-import ctypes 
 
 # 读取配置文件
 cf = configparser.ConfigParser() 
@@ -137,8 +134,8 @@ def huoche():
                     continue
         sleep(1)
         b.find_by_text(pa)[1].click()
-        winsound.Beep(300, 3000);
-        ctypes.windll.user32.MessageBoxW(0,u'看票', u'票来了',0)
+        notify.Beep(300, 3000);
+        notify.MessageBoxW('看票','票来了')
         print  (u"快输入验证码抢票啊啊  啊")
     except Exception as e:
         print(traceback.print_exc())
