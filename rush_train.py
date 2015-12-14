@@ -52,7 +52,7 @@ dtime = cf.get("ticket", "start_date")
 
 #设定乘坐车次
 
-train_no = u"Z186"
+train_no = cf.get("ticket", "train_no") 
 
 
 #设定网址
@@ -121,7 +121,7 @@ def huoche():
                 b.find_by_text(u"查询").click()
                 count +=1
                 print (u"循环点击查询... 第 %s 次" % count)
-                sleep(1)
+                sleep(5)
                 try:
                     b.find_by_text(u"预订")[order - 1].click()
                 except:
@@ -132,7 +132,7 @@ def huoche():
                 b.find_by_text(u"查询").click()
                 count += 1
                 print (u"循环点击查询... 第 %s 次" % count)
-                sleep(1)
+                sleep(5)
                 try:
                     for i in b.find_by_text(u"预订"):
                         i.click()
