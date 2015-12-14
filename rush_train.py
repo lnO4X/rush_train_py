@@ -15,7 +15,7 @@ import ctypes
 cf = configparser.ConfigParser() 
 cf.read("app.conf")
 
-# 读取用户名，密码
+# 读取12306账户名，密码
 uname = cf.get("user", "name")
 upasswd=cf.get("user", "password")
 print ("username:"+uname);
@@ -35,8 +35,10 @@ train_type = cf.get("ticket", "train_type")
 start_sta = cf.get("ticket", "start_station")
 end_sta =cf.get("ticket", "end_station")
 
-
 print (start_sta+"/"+end_sta);
+
+# 读取系统配置
+interval = cf.get("system", "interval")
 
 
 # 时间格式2016-02-01
@@ -44,13 +46,7 @@ print (start_sta+"/"+end_sta);
 dtime = cf.get("ticket", "start_date") 
 
 
-
-
-
-
-
-
-#设定乘坐车次
+#设定乘坐车次 暂时无用 测试有时候有效有时候出错 12306问题
 
 train_no = cf.get("ticket", "train_no") 
 
@@ -121,7 +117,7 @@ def huoche():
                 b.find_by_text(u"查询").click()
                 count +=1
                 print (u"循环点击查询... 第 %s 次" % count)
-                sleep(5)
+                sleep(interval)
                 try:
                     b.find_by_text(u"预订")[order - 1].click()
                 except:
@@ -132,7 +128,7 @@ def huoche():
                 b.find_by_text(u"查询").click()
                 count += 1
                 print (u"循环点击查询... 第 %s 次" % count)
-                sleep(5)
+                sleep(interval)
                 try:
                     for i in b.find_by_text(u"预订"):
                         i.click()
